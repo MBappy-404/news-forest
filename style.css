@@ -6,3 +6,9 @@
 .container.pb-3 {
      border-bottom: 1px solid rgb(227, 220, 220);
  }
+
+.menu-item ul li a{
+     font-size: 19px;
+     color: rgb(127, 124, 124);
+     font-weight: 600;
+ }
