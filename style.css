@@ -1,6 +1,7 @@
 ul.nav.nav-pills.mb-2.mb-lg-0 {
      font-size: 18px;
      font-weight: 500;
+
       
  }
 
@@ -12,4 +13,11 @@ ul.nav.nav-pills.mb-2.mb-lg-0 {
      font-size: 19px;
      color: rgb(127, 124, 124);
      font-weight: 600;
+ }
+
+ .row{
+    border: 1px solid rgb(212, 211, 211);
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
  }

@@ -18,7 +18,7 @@ const seatAllMenu = categories => {
 
           const categoryList = document.createElement('list');
           categoryList.innerHTML = `
-          <li id="click" class="nav-item">
+          <li  class="nav-item p-3">
             <a  onclick="openCatagory('${category.category_id}')" class="nav-link" href="#"> ${category.category_name}</a>
            </li>`;
           
@@ -45,44 +45,57 @@ const  openCatagory = async (news_id) => {
 
 const displayCatagory = categories =>{
 
-     console.log(categories);
-     categories.forEach( displayElement => {
-          console.log(displayElement);
+     // console.log(categories);
 
-
+     
      const categoriesContainer = document.getElementById('categories-container');
-     // categoriesContainer.textContent = '';
+     categoriesContainer.textContent = '';
+
+     categories.forEach( displayElement => {
+          console.log(displayElement.details.slice(0, 300));
+
+     
+          // if(displayElement.details.length < 200 ){
+          //      displayElement.details.slice(0, 200)
+          // }
+          // else{
+          //      displayElement.details
+          // }
+    
      const categoryDiv = document.createElement('div');
      categoryDiv.classList.add('row');
      categoryDiv.innerHTML = `
      
-     <div class="row">
-     <div class="col-md-4">
-          <img src="${displayElement.image_url}" class="img-fluid rounded-start" alt="...">
+     
+     <div class="col-md-3 ">
+          <img src="${displayElement.thumbnail_url}" class=" w-100 rounded-start" alt="...">
      </div>
     
-     <div class="col-md-8">
-          <div class="card-body">
-               <h5 class="card-title">${displayElement.title}</h5>
-               <p class="card-text"></p>
-               <div class="row">
+     <div class="col-md-9 ">
+          <div class="card-body border-none">
+               <h4 class="card-title">${displayElement.title}.</h4>
+               <p class="card-text">${displayElement.details.slice(0, 400)}</p>
+               <div class="d-flex  mt-4">
                     <div class="col-md-4">
-                         <div class="content">
-                              <img src="" alt="">
-                              <p></p>
-                              <p></p>
+                         <div class="content d-flex">
+                              <div class="w-25"> <img src="${displayElement.author.img}" class="w-100 rounded d-inline" alt="">
+                              </div>
+                             <div class="p-1 align-self-center ">
+                             <span>${displayElement.author.name ? displayElement.author.name : 'Name Not Found'} </span> <br>
+                             <span>${displayElement.author.published_date ? displayElement.author.published_date : 'Date Not Found' }</span>
+                             </div>
                          </div>
                     </div>
-                    <div class="col-md-4">
-                         <h6></h6>
+                    <div class="col-md-4 align-self-center text-center">
+                         <h5>${displayElement.total_view  ? displayElement.total_view : 'View Not Found'  }k</h5>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 align-self-center">
                          <button class="btn btn-primary">Vew Details</button>
                     </div>
                </div>
           </div>
      </div>
-     </div>
+
      
      `;
 
@@ -91,7 +104,7 @@ const displayCatagory = categories =>{
 
      })
 }
-// openCatagory();
+openCatagory();
 
 
 
