@@ -45,22 +45,22 @@ const  openCatagory = async (news_id) => {
 
 const displayCatagory = categories =>{
 
-     // console.log(categories);
+     console.log(categories);
 
      
      const categoriesContainer = document.getElementById('categories-container');
      categoriesContainer.textContent = '';
 
      categories.forEach( displayElement => {
-          console.log(displayElement.details.slice(0, 300));
+          // console.log(displayElement.details.slice(0, 300));
 
      
-          // if(displayElement.details.length < 200 ){
-          //      displayElement.details.slice(0, 200)
-          // }
-          // else{
-          //      displayElement.details
-          // }
+          if(displayElement.details.length < 200 ){
+               displayElement.details.slice(0, 200)
+          }
+          else{
+               displayElement.details
+          }
     
      const categoryDiv = document.createElement('div');
      categoryDiv.classList.add('row');
@@ -71,7 +71,7 @@ const displayCatagory = categories =>{
           <img src="${displayElement.thumbnail_url}" class=" w-100 rounded-start" alt="...">
      </div>
     
-     <div class="col-md-9 ">
+     <div class="col-md-9  align-self-center">
           <div class="card-body border-none">
                <h4 class="card-title">${displayElement.title}.</h4>
                <p class="card-text">${displayElement.details.slice(0, 400)}</p>
@@ -90,7 +90,7 @@ const displayCatagory = categories =>{
                          <h5>${displayElement.total_view  ? displayElement.total_view : 'View Not Found'  }k</h5>
                     </div>
                     <div class="col-md-4 align-self-center">
-                         <button class="btn btn-primary">Vew Details</button>
+                         <button class="btn btn-primary"  onclick="loadNewsDetails(${displayElement})"  data-bs-toggle="modal" data-bs-target="#categoryModal">Vew Details</button>
                     </div>
                </div>
           </div>
@@ -104,6 +104,30 @@ const displayCatagory = categories =>{
 
      })
 }
+
+const loadNewsDetails = newsDetails => {
+
+
+     console.log(newsDetails);
+}
+
+//      const url =`https://openapi.programming-hero.com/api/news/category/${id}`;
+
+//      const res = await fetch(url);
+//      const data = await res.json();
+//      displayPhoneDetails(data.data);
+// }
+
+// const displayPhoneDetails = phone =>{
+
+//      console.log(phone);
+
+
+// }
+
+
+
+// loadCategoryDetails();
 openCatagory();
 
 
