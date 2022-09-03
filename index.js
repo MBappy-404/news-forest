@@ -11,17 +11,15 @@ const seatAllMenu = categories => {
 
 
      const categoryName = document.getElementById('all-menu');
-     
+
      categories.news_category.forEach(category => {
           // console.log(category);
-
+          
           const categoryList = document.createElement('list');
           categoryList.innerHTML = `
           <li  class="nav-item p-3">
             <a  onclick="openCatagory('${category.category_id}')"  class="nav-link" href="#"> ${category.category_name}</a>
            </li>`;    
-
-
 
            categoryName.appendChild(categoryList);
      });
@@ -37,9 +35,11 @@ const  openCatagory = async (news_id) => {
 
    const url =  `https://openapi.programming-hero.com/api/news/category/${news_id}`;
 
+
    const res = await fetch(url);
    const data = await res.json();
    displayCatagory(data.data);
+  
 }
 
 
@@ -48,15 +48,17 @@ const  openCatagory = async (news_id) => {
 const displayCatagory = categories =>{
 
      // console.log(categories);
+     
 
    
           
      
      const categoriesContainer = document.getElementById('categories-container');
      categoriesContainer.textContent = '';
+     
 
      categories.forEach( displayElement => {
-          // console.log(displayElement.details.slice(0, 300));
+          console.log(displayElement);
 
      
           if(displayElement.details.length < 200 ){
@@ -92,8 +94,8 @@ const displayCatagory = categories =>{
                     <div class="col-md-4 align-self-center text-center">
                          <h5> Views - ${displayElement.total_view  ? displayElement.total_view : ' Not Found'  }</h5>
                     </div>
-                    <div class="col-md-4 col-4 align-self-center">
-                         <button class="btn btn-primary"  onclick="loadNewsDetails()"  data-bs-toggle="modal" data-bs-target="#categoryModal">Vew Details</button>
+                    <div class="col-md-4 align-self-center">
+                         <button class="btn btn-primary"  onclick="loadNewsDetails('${displayElement.category_id}')"  data-bs-toggle="modal" data-bs-target="#categoryModal">Vew Details</button>
                     </div>
                </div>
           </div>
@@ -111,6 +113,60 @@ const displayCatagory = categories =>{
 }
 
 
+const loadNewsDetails = async (news) => {
+     
+
+     const url = `https://openapi.programming-hero.com/api/news/category/${news}`;
+
+     const res = await fetch(url);
+     const data = await res.json();
+     displayPhoneDetails(data.data);
+}
+
+const displayPhoneDetails = phone =>{
+
+     for( const aii of phone){
+          console.log(aii);
+
+
+          const modalBody = document.getElementById('modal-body');
+          modalBody.innerHTML = `
+          <div class="col-md-2 ">
+          <img src="${aii.thumbnail_url}" class=" w-100 rounded-start" alt="...">
+     </div>
+    
+     <div class="col-md-10  align-self-center">
+          <div class="card-body border-none">
+               <h4 class="card-title">${aii.title}.</h4>
+               <p class="card-text">${aii.details}</p>
+               <div class="d-flex  mt-4">
+                    <div class="col-md-3">
+                         <div class="content d-flex">
+                              <div class="w-25"> <img src="${aii.author.img}" class="w-100 rounded d-inline" alt="">
+                              </div>
+                             <div class="p-1 align-self-center ">
+                             <span>${aii.author.name ? aii.author.name : 'Name Not Found'} </span> <br>
+                             <span>${aii.author.published_date ? aii.author.published_date : 'Date Not Found' }</span>
+                             </div>
+                         </div>
+                    </div>
+                    <div class="col-md-2 align-self-center text-center">
+                         <h5> Views - ${aii.total_view  ? aii.total_view : ' Not Found'  }</h5>
+                    </div>
+                    <div class="col-md-2 align-self-center text-center">
+                         <h5> Rating - ${aii.rating.number }</h5>
+                    </div>
+                    <div class="col-md-2 align-self-center text-center">
+                         <h5> Badge - ${aii.rating.badge}</h5>
+                    </div>
+               </div>
+          </div>
+     </div>
+         
+          `
+
+     }
+}
 
 
 
@@ -129,6 +185,5 @@ const toggleSpiner = isLoding => {
 
      }
 }
-
 loadCategoryes();
 
