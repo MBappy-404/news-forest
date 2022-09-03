@@ -7,10 +7,11 @@ body{
 p{
     font-family: sans-serif;
     color: rgb(113, 107, 107);
+    font-size: 15px;
 }
 
 ul.nav.nav-pills.mb-2.mb-lg-0 {
-     font-size: 18px;
+    font-size: 17px;
      font-weight: 500;
 
       
@@ -21,7 +22,7 @@ ul.nav.nav-pills.mb-2.mb-lg-0 {
  }
 
 .menu-item ul li a{
-     font-size: 19px;
+     font-size: 17px;
      color: rgb(127, 124, 124);
      font-weight: 600;
  }
@@ -32,3 +33,9 @@ ul.nav.nav-pills.mb-2.mb-lg-0 {
     padding: 10px;
     border-radius: 10px;
  }
+
+
+
+.p-1.w-50.m-auto {
+    border: 1px solid rgb(195, 192, 192);
+}
