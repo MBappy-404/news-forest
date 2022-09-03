@@ -19,10 +19,13 @@ const seatAllMenu = categories => {
           const categoryList = document.createElement('list');
           categoryList.innerHTML = `
           <li  class="nav-item p-3">
-            <a  onclick="openCatagory('${category.category_id}')" class="nav-link" href="#"> ${category.category_name}</a>
+            <a  onclick="openCatagory('${category.category_id}')"  class="nav-link" href="#"> ${category.category_name}</a>
            </li>`;
-          
+
+           
            categoryName.appendChild(categoryList);
+           
+
 
             
      });
@@ -45,8 +48,10 @@ const  openCatagory = async (news_id) => {
 
 const displayCatagory = categories =>{
 
-     console.log(categories);
+     // console.log(categories);
 
+   
+          
      
      const categoriesContainer = document.getElementById('categories-container');
      categoriesContainer.textContent = '';
@@ -61,7 +66,6 @@ const displayCatagory = categories =>{
           else{
                displayElement.details
           }
-    
      const categoryDiv = document.createElement('div');
      categoryDiv.classList.add('row');
      categoryDiv.innerHTML = `
@@ -100,6 +104,8 @@ const displayCatagory = categories =>{
      `;
 
      categoriesContainer.appendChild(categoryDiv);
+     toggleSpiner(false);
+          
 
 
      })
@@ -131,6 +137,17 @@ const loadNewsDetails = newsDetails => {
 openCatagory();
 
 
+const toggleSpiner = isLoding => {
+
+     const loderSection = document.getElementById('loader');
+     if (isLoding) {
+          loderSection.classList.remove('d-none')
+     }
+     else {
+          loderSection.classList.add('d-none')
+
+     }
+}
 
 
 
