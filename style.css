@@ -1,3 +1,14 @@
+
+body{
+    font-family: 'Oswald', sans-serif;
+
+}
+
+p{
+    font-family: sans-serif;
+    color: rgb(113, 107, 107);
+}
+
 ul.nav.nav-pills.mb-2.mb-lg-0 {
      font-size: 18px;
      font-weight: 500;

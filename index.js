@@ -4,7 +4,6 @@ const loadCategoryes = async() => {
      fetch(url)
      const res = await fetch(url);
      const data = await res.json();
-
      seatAllMenu(data.data);
 
 }
@@ -20,20 +19,20 @@ const seatAllMenu = categories => {
           categoryList.innerHTML = `
           <li  class="nav-item p-3">
             <a  onclick="openCatagory('${category.category_id}')"  class="nav-link" href="#"> ${category.category_name}</a>
-           </li>`;
+           </li>`;    
 
-           
+
+
            categoryName.appendChild(categoryList);
-           
-
-
-            
      });
+     
 }
+
 
  
 const  openCatagory = async (news_id) => {
 
+   
 //    console.log(news_id);
 
    const url =  `https://openapi.programming-hero.com/api/news/category/${news_id}`;
@@ -91,10 +90,10 @@ const displayCatagory = categories =>{
                          </div>
                     </div>
                     <div class="col-md-4 align-self-center text-center">
-                         <h5>${displayElement.total_view  ? displayElement.total_view : 'View Not Found'  }k</h5>
+                         <h5> Views - ${displayElement.total_view  ? displayElement.total_view : ' Not Found'  }</h5>
                     </div>
-                    <div class="col-md-4 align-self-center">
-                         <button class="btn btn-primary"  onclick="loadNewsDetails(${displayElement})"  data-bs-toggle="modal" data-bs-target="#categoryModal">Vew Details</button>
+                    <div class="col-md-4 col-4 align-self-center">
+                         <button class="btn btn-primary"  onclick="loadNewsDetails()"  data-bs-toggle="modal" data-bs-target="#categoryModal">Vew Details</button>
                     </div>
                </div>
           </div>
@@ -111,25 +110,7 @@ const displayCatagory = categories =>{
      })
 }
 
-const loadNewsDetails = newsDetails => {
 
-
-     console.log(newsDetails);
-}
-
-//      const url =`https://openapi.programming-hero.com/api/news/category/${id}`;
-
-//      const res = await fetch(url);
-//      const data = await res.json();
-//      displayPhoneDetails(data.data);
-// }
-
-// const displayPhoneDetails = phone =>{
-
-//      console.log(phone);
-
-
-// }
 
 
 
@@ -149,10 +130,5 @@ const toggleSpiner = isLoding => {
      }
 }
 
-
-
 loadCategoryes();
-
-
-
 
